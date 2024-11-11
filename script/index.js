@@ -33,10 +33,14 @@ const person = {
   // sayHello: function() {
   //   console.log('Ciao, sono Mario Rossi')
   // },
-  sayHello: () => {
-    console.log('Ciao, sono Mario Rossi', this)
+  sayHello: function () {
+    console.log('Ciao, sono Mario Rossi', this.firstName) // this.firstName è "Mario"
+    // this è ora l'oggetto person!
   },
 }
+
+person.sayHello() // se sayHello() è un metodo scritto "a freccia", il this non punterà
+// all'oggetto che lo contiene (person) ma a un più generico Window, un oggetto che rappresenta la finestra del browser
 
 // FUNZIONE FRECCIA: apporta 2 modifiche alle funzioni normali
 const somma1 = function (num1, num2) {
@@ -51,3 +55,31 @@ somma2(5, 6) // torna 11
 
 // 2) una funzione freccia apporta un differente significato alla parola "this"
 // una funzione freccia NON possiede un proprio riferimento per "this", ma eredita quello "circostante"
+
+// in JS la creazione degli oggetti può avvenire come abbiamo visto sopra, semplicemente dichiarando una variabile e assegnandoci come valore un paio di graffe con al proprio interno tutte le coppie chiave:valore che desideriamo
+
+const dog1 = {
+  legs: 4,
+  tail: true,
+  color: 'black',
+}
+
+const dog2 = {
+  legs: 4,
+  tails: true,
+  color: 'golden',
+}
+
+const dog3 = {
+  leg: 4,
+  tail: true,
+  color: 'brown',
+}
+
+// ho cercato di fare 3 volte lo stesso oggetto cane, ma inevitabilmente a lungo andare finisco con il fare degli errori di battitura o mi dimentico di proprietà valori etc.
+// bellissimo il fatto che in JS si possano creare oggetti "al volo", senza una struttura a monte come in altri linguaggi, ma ecco che qualora si presentasse la necessità di AVERLA una struttura (per dichiarare un set di proprietà e metodi una volta sola) dobbiamo imparare a generare una fabbrica, uno stampino, un "blueprint" etc.
+
+// questo "stampino" inizialmente in JS si faceva grazie alle "funzioni costruttore"
+// una funzione che GENERA OGGETTI
+
+// ci spostiamo ora sul file "constructor.js"
